@@ -17,7 +17,8 @@ services:
       KC_DB_URL_DATABASE: keycloak
 
       # HTTP / Host settings
-      KC_HOSTNAME_STRICT: false
+      KC_HOSTNAME: 192.168.0.123
+      KC_HOSTNAME_STRICT: true      # puedes dejar true si defines KC_HOSTNAME
       KC_HOSTNAME_STRICT_HTTPS: false
       KC_HTTP_ENABLED: true
     ports:
