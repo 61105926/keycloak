@@ -1,18 +1,25 @@
+version: '3.8'
+
 services:
   keycloak:
-    image: quay.io/keycloak/keycloak:latest
+    image: quay.io/keycloak/keycloak:21.1.1
     container_name: keycloak
     environment:
+      # Admin
       KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin123
+
+      # Database
       KC_DB: postgres
-      KC_DB_URL: jdbc:postgresql://postgres:5432/keycloak
       KC_DB_USERNAME: keycloak
       KC_DB_PASSWORD: keycloak
+      KC_DB_URL_HOST: postgres
+      KC_DB_URL_DATABASE: keycloak
+
+      # HTTP / Host settings
       KC_HOSTNAME_STRICT: false
       KC_HOSTNAME_STRICT_HTTPS: false
       KC_HTTP_ENABLED: true
-      KC_HOSTNAME: ""
     ports:
       - "8080:8080"
     depends_on:
@@ -20,6 +27,7 @@ services:
     command: start
     networks:
       - keycloak-network
+    restart: unless-stopped
 
   postgres:
     image: postgres:15-alpine
@@ -32,6 +40,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - keycloak-network
+    restart: unless-stopped
 
 volumes:
   postgres_data:
@@ -39,4 +48,3 @@ volumes:
 networks:
   keycloak-network:
     driver: bridge
-
