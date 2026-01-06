@@ -18,6 +18,7 @@ services:
 
       # HTTP / Host settings
       KC_HOSTNAME_STRICT: false
+      KC_HOSTNAME: ""
       KC_HTTP_ENABLED: true
 
     ports:
