@@ -22,7 +22,7 @@ services:
       KC_HTTP_ENABLED: true
 
     ports:
-      - "8080:8080"
+      - "8002:8080"
     depends_on:
       - postgres
     command: start   # Coolify ignora start-dev, usamos start + KC_HOSTNAME_STRICT=false
