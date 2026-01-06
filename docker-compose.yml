@@ -25,7 +25,7 @@ services:
       - "8080:8080"
     depends_on:
       - postgres
-    command: start-dev
+    command: start-dev --http-relative-path=/
     networks:
       - keycloak-network
     restart: unless-stopped
