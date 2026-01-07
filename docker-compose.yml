@@ -25,7 +25,7 @@ services:
       - "8002:8080"
     depends_on:
       - postgres
-    command: start   # Coolify ignora start-dev, usamos start + KC_HOSTNAME_STRICT=false
+    command: start-dev   # Modo desarrollo para local (más rápido y permisivo)
     networks:
       - keycloak-network
     restart: unless-stopped
