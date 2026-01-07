@@ -19,6 +19,7 @@ services:
       # HTTP / Host settings
       KC_HOSTNAME_STRICT: false   # desactiva validación estricta de hostname
       KC_HOSTNAME: ""             # deja vacío para que arranque sin hostname
+      KC_HOSTNAME_STRICT_HTTPS=false
       KC_HTTP_ENABLED: true
 
     ports:
