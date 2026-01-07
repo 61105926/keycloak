@@ -21,6 +21,8 @@ services:
       KC_HOSTNAME: ""             # deja vacío para que arranque sin hostname
       KC_HOSTNAME_STRICT_HTTPS: false
       KC_HTTP_ENABLED: true
+      KC_HTTPS_REQUIRED: none   # <- esto desactiva la obligación de HTTPS
+
 
     ports:
       - "8002:8080"
