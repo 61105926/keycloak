@@ -22,6 +22,8 @@ services:
       KC_HOSTNAME_STRICT_HTTPS: false
       KC_HTTP_ENABLED: true
       KC_HTTPS_REQUIRED: none
+      KC_PROXY_HEADERS: xforwarded
+      PROXY_ADDRESS_FORWARDING=true
 
 
 
