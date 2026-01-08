@@ -17,14 +17,12 @@ services:
       KC_DB_URL_DATABASE: keycloak
 
       # HTTP / Host settings
-      KC_HOSTNAME: auth.minoil.com.bo
-      KC_HOSTNAME_STRICT: true       # activa validación estricta del hostname
-      KC_HOSTNAME_STRICT_HTTPS: false
-      KC_HTTP_ENABLED: true
-      KC_HTTPS_REQUIRED: none
-      KC_PROXY_HEADERS: xforwarded
-      PROXY_ADDRESS_FORWARDING=true
-
+    KC_PROXY=edge
+    KC_HOSTNAME=auth.minoil.com.bo
+    KC_PROXY_HEADERS=xforwarded
+    KC_HOSTNAME_STRICT=false
+    KC_HOSTNAME_STRICT_HTTPS=false
+    KC_HTTP_ENABLED=true
 
 
     ports:
