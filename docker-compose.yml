@@ -1,55 +1,62 @@
 version: '3.8'
 
 services:
-  keycloak:
-    image: quay.io/keycloak/keycloak:21.1.1
-    container_name: keycloak
-    environment:
-      # Admin
-      KEYCLOAK_ADMIN: admin
-      KEYCLOAK_ADMIN_PASSWORD: admin123
+ keycloak:
+   image: quay.io/keycloak/keycloak:26.5.1
+   container_name: keycloak
+   environment:
+     # Admin user
+     KEYCLOAK_ADMIN: admin
+     KEYCLOAK_ADMIN_PASSWORD: admin123
 
-      # Database
-      KC_DB: postgres
-      KC_DB_USERNAME: keycloak
-      KC_DB_PASSWORD: keycloak
-      KC_DB_URL_HOST: postgres
-      KC_DB_URL_DATABASE: keycloak
+     # Database
+     KC_DB: postgres
+     KC_DB_USERNAME: keycloak
+     KC_DB_PASSWORD: keycloak
+     KC_DB_URL_HOST: postgres
+     KC_DB_URL_DATABASE: keycloak
 
-      # HTTP / Host settings
-      KC_HOSTNAME: 190.171.225.68
-      KC_HOSTNAME_STRICT: true       # activa validación estricta del hostname
-      KC_HOSTNAME_STRICT_HTTPS: false
-      KC_HTTP_ENABLED: true
-      KC_HTTPS_REQUIRED: none
+     # HTTP / Host settings
+     KC_PROXY: edge
+     KC_PROXY_HEADERS: xforwarded
 
+     # URL del dominio externo (para producción HTTPS)
+     KC_HOSTNAME_URL: https://auth.minoil.com.bo
+     KC_HOSTNAME_ADMIN_URL: https://auth.minoil.com.bo
+     KC_HOSTNAME_STRICT: "true"
+     KC_HOSTNAME_STRICT_HTTPS: "true"
+     KC_HTTP_ENABLED: "true"
 
+     # Opcional: modo local sin SSL para ajustes temporales
+     # FRONTEND_URL: http://localhost:8080
 
-    ports:
-      - "8002:8080"
-    depends_on:
-      - postgres
-    command: start-dev   # Modo desarrollo para local (más rápido y permisivo)
-    networks:
-      - keycloak-network
-    restart: unless-stopped
+   ports:
+     - "8002:8080"   # acceso local temporal: http://localhost:8002
+   depends_on:
+     - postgres
+   command: start-dev   # Modo desarrollo (más rápido, menos restricciones)
+   networks:
+     - keycloak-network
+   restart: unless-stopped
 
-  postgres:
-    image: postgres:15-alpine
-    container_name: keycloak-postgres
-    environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: keycloak
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - keycloak-network
-    restart: unless-stopped
+ postgres:
+   image: postgres:15-alpine
+   container_name: keycloak-postgres
+   environment:
+     POSTGRES_DB: keycloak
+     POSTGRES_USER: keycloak
+     POSTGRES_PASSWORD: keycloak
+   volumes:
+     - postgres_data:/var/lib/postgresql/data
+   networks:
+     - keycloak-network
+   restart: unless-stopped
 
 volumes:
-  postgres_data:
+ postgres_data:
 
 networks:
-  keycloak-network:
-    driver: bridge
+ keycloak-network:
+   driver: bridge
+
+
