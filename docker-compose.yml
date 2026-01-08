@@ -18,7 +18,6 @@ services:
 
       # Host & Proxy
       KC_PROXY: edge
-      KC_HOSTNAME: auth.minoil.com.bo
       KC_HOSTNAME_URL: https://auth.minoil.com.bo
       KC_HOSTNAME_ADMIN_URL: https://auth.minoil.com.bo
       KC_HOSTNAME_STRICT: "true"
