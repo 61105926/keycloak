@@ -29,7 +29,7 @@ services:
       - "8002:8080"
     depends_on:
       - postgres
-    command: start-dev   # Modo desarrollo para local (más rápido y permisivo)
+    command: start   # Modo desarrollo para local (más rápido y permisivo)
     networks:
       - keycloak-network
     restart: unless-stopped
