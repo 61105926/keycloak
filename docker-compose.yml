@@ -17,7 +17,7 @@ services:
      KC_DB_URL_DATABASE: keycloak
 
      # HTTP / Host settings
-     KC_HOSTNAME: https://auth.minoil.com.bo/
+     KC_HOSTNAME: 190.171.225.68
      KC_HOSTNAME_STRICT: true       # activa validación estricta del hostname
      KC_HOSTNAME_STRICT_HTTPS: false
      KC_HTTP_ENABLED: true
