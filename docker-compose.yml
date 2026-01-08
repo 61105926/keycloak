@@ -2,10 +2,10 @@ version: '3.8'
 
 services:
   keycloak:
-    image: quay.io/keycloak/keycloak:21.1.1
+    image: quay.io/keycloak/keycloak:26.5.1
     container_name: keycloak
     environment:
-      # Admin
+      # Admin user
       KEYCLOAK_ADMIN: admin
       KEYCLOAK_ADMIN_PASSWORD: admin123
 
@@ -17,19 +17,24 @@ services:
       KC_DB_URL_DATABASE: keycloak
 
       # HTTP / Host settings
-      KC_PROXY=edge
+      KC_PROXY: edge
       KC_PROXY_HEADERS: xforwarded
+
+      # URL del dominio externo (para producción HTTPS)
       KC_HOSTNAME_URL: https://auth.minoil.com.bo
       KC_HOSTNAME_ADMIN_URL: https://auth.minoil.com.bo
-      KC_HOSTNAME_STRICT: true
-      KC_HOSTNAME_STRICT_HTTPS: true
-      KC_HTTP_ENABLED: true
+      KC_HOSTNAME_STRICT: "true"
+      KC_HOSTNAME_STRICT_HTTPS: "true"
+      KC_HTTP_ENABLED: "true"
+
+      # Opcional: modo local sin SSL para ajustes temporales
+      # FRONTEND_URL: http://localhost:8080
 
     ports:
-      - "8002:8080"
+      - "8002:8080"   # acceso local temporal: http://localhost:8002
     depends_on:
       - postgres
-    command: start-dev   # Modo desarrollo para local (más rápido y permisivo)
+    command: start-dev   # Modo desarrollo (más rápido, menos restricciones)
     networks:
       - keycloak-network
     restart: unless-stopped
