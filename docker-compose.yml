@@ -17,13 +17,13 @@ services:
       KC_DB_URL_DATABASE: keycloak
 
       # HTTP / Host settings
-    KC_PROXY=edge
-    KC_HOSTNAME=auth.minoil.com.bo
-    KC_PROXY_HEADERS=xforwarded
-    KC_HOSTNAME_STRICT=false
-    KC_HOSTNAME_STRICT_HTTPS=false
-    KC_HTTP_ENABLED=true
-
+      KC_PROXY=edge
+      KC_PROXY_HEADERS: xforwarded
+      KC_HOSTNAME_URL: https://auth.minoil.com.bo
+      KC_HOSTNAME_ADMIN_URL: https://auth.minoil.com.bo
+      KC_HOSTNAME_STRICT: true
+      KC_HOSTNAME_STRICT_HTTPS: true
+      KC_HTTP_ENABLED: true
 
     ports:
       - "8002:8080"
