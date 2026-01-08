@@ -16,10 +16,12 @@ services:
      KC_DB_URL_HOST: postgres
      KC_DB_URL_DATABASE: keycloak
 
+     KC_PROXY: edge
+     KC_PROXY_HEADERS: xforwarded
      # HTTP / Host settings
      KC_HOSTNAME: 190.171.225.68
      KC_HOSTNAME_STRICT: true       # activa validación estricta del hostname
-     KC_HOSTNAME_STRICT_HTTPS: false
+     KC_HOSTNAME_STRICT_HTTPS: true
      KC_HTTP_ENABLED: true
      KC_HTTPS_REQUIRED: none
 
